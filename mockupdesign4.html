@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+   <style>
+       
+       .outerContainer{
+           position: relative;
+           display: block;
+           height: 50vh;
+           overflow: hidden;   
+       }
+       .innerContainer{
+           z-index: 5;
+           left: ;
+           top:0;
+           position: absolute;
+           height: 50vh;
+           width: 1000%;  
+       }
+       ul{
+           margin:0;
+           padding:0;
+           list-style-type: none;
+       }
+       li{
+           display: inline;
+           width: 100%;
+       }
+       li img{
+           height: 50vh;
+           
+       }
+       .leftArrow{
+           position: fixed;
+           left: 0px;
+           height: 50vh;
+           width: 11%;
+           background-color: rgba(255,255,255,0.7);
+           z-index: 99999;
+       }
+       .rightArrow{
+           position: fixed;
+           right: 0px;
+           height: 50vh;
+           width: 11%;
+           background-color: rgba(255,255,255,0.7);
+           z-index: 99999;
+       }
+       #swipeArea {position: absolute;
+           text-align: center;
+           width: 80%;
+           left: 10%;
+           height: 100%;
+           z-index: 99998;
+           border: 1px solid #000000;
+           top:0; 
+       }
+    </style>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="hammer.min.js"></script>
+    
+<body>
+ 
+  <div class="outerContainer">
+  <div id="swipeArea">
+  
+  </div>
+   <div class="innerContainer">
+   <div class="leftArrow"></div>
+   <div class="rightArrow"></div>
+    <ul>
+    <li><img src='//d3c707rd4l0ogp.cloudfront.net/content-images/ss16/750/TOAST_Holiday_Category.jpg' /></li>
+    <li><img src='//d117fiyhpld8f9.cloudfront.net/content-images/ss16/550/TOAST_TrueIndigo_ContentPage_3.jpg' /></li>
+    <li><img src='https://s-media-cache-ak0.pinimg.com/736x/89/80/94/8980945eb5cbc63c61502fbe78aab494.jpg' /></li>
+    <li><img src='//d117fiyhpld8f9.cloudfront.net/content-images/ss16/550/TOAST_TrueIndigo_ContentPage_2.jpg' /></li>
+    <li><img src='//d117fiyhpld8f9.cloudfront.net/content-images/ss16/550/TOAST_TrueIndigo_ContentPage_3.jpg' /></li>
+    <li><img src='//d117fiyhpld8f9.cloudfront.net/content-images/ss16/750/HHLanding_2.jpg' /></li>
+    <li><img src='//d117fiyhpld8f9.cloudfront.net/content-images/ss16/750/HHLanding_6.jpg' /></li>
+    <li><img src='//d117fiyhpld8f9.cloudfront.net/content-images/ss16/750/HiddenToast_LandingWomen_5.jpg' /></li>
+    <li><img src='//d117fiyhpld8f9.cloudfront.net/content-images/ss16/750/EarlyCapsuleSale_Homepage_7.jpg' /></li>
+    </ul>
+     
+      </div>
+    
+    </div>
+    <a href="#" id="prev">Previous</a>
+<a href="#" id="next">Next</a>
+
+</body>
+<script>    
+      var imageCount = $('ul li').length
+    
+      var originalWindowSize = $(window).width();
+      
+      $(window).resize(function () {
+          
+      var width = $(window).width();
+          
+      var height = $(window).height();
+
+    })
+
+        var x = 0;
+        
+        imgPosition = 1;
+    
+        function galleryScrollfwd(){
+            
+            winWidth = $(window).width()
+            console.log('window width = ' + winWidth)
+            currentImageWidth = $('ul li:nth-child('+imgPosition+')').width();
+            console.log('currentImageWidth = ' + currentImageWidth);
+            var firstLeftMargin = (winWidth - currentImageWidth) / 2;
+            console.log('currentImage Margin = ' + firstLeftMargin)
+            var nextImgPos = imgPosition + 1
+            prevCount = currentImageWidth;
+            console.log('nextImgPos = ' + nextImgPos)
+            nextImageWidth = $('ul li:nth-child('+nextImgPos+')').width();
+            console.log('The next image width == ' + nextImageWidth)
+            var nextImageSoloMargin = (winWidth - nextImageWidth) / 2
+            console.log('The next image solo margin == ' + nextImageSoloMargin)
+            var nextImagePosition = currentImageWidth + prevCount;
+            console.log('the next image position == ' + nextImagePosition)
+            var blah = winWidth - nextImageSoloMargin;
+            
+            
+              //get window width
+            //get image width
+            // margin = window width - image width / 2
+            //scrollamount = image width + margin
+            //animate left: scrollamount
+     //   console.log("new margin size = " + marginSize)
+    //    console.log("new scrollToCenter = " + scrollToCenter)
+    //    console.log("new image width = " + currentImageWidth)
+    //            imgPosition++
+                
+       //         galleryTop = galleryTop - currentImageWidth;
+           
+                $( ".innerContainer" ).css('left', - prevCount);
+            console.log('previousCount = '+ prevCount)
+                prevCount += currentImageWidth;
+            console.log('newPrevCount = ' + prevCount)
+                if (imgPosition == 8) {
+                    $('#next').hide();    
+                }
+            if(imgPosition == 0){
+                $('#prev').hide()
+                
+            }else{
+               $('#prev').show(); 
+            }
+            imgPosition++
+        }
+    
+        function galleryScrollbk(){
+
+           currentImageWidth = $('ul li:nth-child('+imgPosition+')').width();
+
+           imgPosition--
+
+            $( ".innerContainer" ).animate({
+                left: 0
+                }, 500, function() {
+                });
+            
+            if(galleryTop == 0){
+                $('#prev').hide()
+            }else{
+               $('#prev').show(); 
+            }
+            if(galleryTop == amountToScroll){
+                $('#next').hide()
+            }else{
+                $('#next').show();
+            }
+        }
+    
+    //WINDOW LOAD//
+    
+    
+    $(window).load(function(){
+        
+        var imageCount = $('ul li').length
+        currentImageWidth = $('ul li:nth-child('+imgPosition+')').width();
+        var winWidth = $(window).width();
+        var firstLeftMargin = (winWidth - currentImageWidth) / 2;
+       
+        $('.innerContainer').css('left', 0);
+        
+       
+        //methods//
+
+       
+    $('#next').on('click', function(){ 
+        galleryScrollfwd();
+
+    });
+        $('.rightArrow').on('click',function(){
+            galleryScrollfwd();
+        })
+   
+    $('#prev').on('click', function(){
+           galleryScrollbk();
+    
+    })
+    $('.leftArrow').on('click',function(){
+            galleryScrollbk();
+        })
+    });
+    
+var myElement = document.getElementById('swipeArea');
+
+// create a simple instance
+// by default, it only adds horizontal recognizers
+var mc = new Hammer(myElement);
+
+// listen to events...
+mc.on("panleft panright panend tap press", function(ev) {
+
+    if (ev.type == "panright") {
+        pandirections = "right"
+    }
+
+
+    if (ev.type == "panleft") {
+        pandirections = "left"
+    }
+    
+    if (ev.type =="panend"){
+        if (pandirections == "right") {
+            galleryScrollbk()
+
+        }
+        
+        if(pandirections == "left"){
+            galleryScrollfwd()
+                        
+        }
+                    
+            console.log("pan end " + pandirections)      
+           
+        }
+
+
+   myElement.textContent = ev.type +" gesture detected.";
+});
+    </script>
+</html>
