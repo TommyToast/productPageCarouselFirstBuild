@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <style>
+        .outerContainer {
+            position: relative;
+            display: block;
+            height: 50vh;
+            overflow: hidden;
+        }
+        
+        .innerContainer {
+            z-index: 5;
+            top: 0;
+            position: absolute;
+            height: 50vh;
+            width: 1000%;
+        }
+        
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        
+        li {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            float: left
+        }
+        
+        li img {
+            height: 50vh;
+        }
+        
+        .leftArrow {
+            position: fixed;
+            left: 0px;
+            height: 50vh;
+            width: 11%;
+            background-color: rgba(255, 255, 255, 0.7);
+            z-index: 99999;
+        }
+        
+        .rightArrow {
+            position: fixed;
+            right: 0px;
+            height: 50vh;
+            width: 11%;
+            background-color: rgba(255, 255, 255, 0.7);
+            z-index: 99999;
+        }
+        
+        #swipeArea {
+            position: absolute;
+            text-align: center;
+            width: 80%;
+            left: 10%;
+            height: 100%;
+            z-index: 99998;
+            border: 1px solid #000000;
+            top: 0;
+            background-color: rgba(0, 80, 80, 0.5);
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="hammer.min.js"></script>
+
+<body>
+
+    <div class="outerContainer">
+        <div id="swipeArea">
+
+        </div>
+        <div class="innerContainer">
+            <div class="leftArrow"></div>
+            <div class="rightArrow"></div>
+            <ul>
+                <li><img src='https://d3c707rd4l0ogp.cloudfront.net/content-images/ss16/750/TOAST_Holiday_Category.jpg' /></li>
+                <li><img src='https://d117fiyhpld8f9.cloudfront.net/content-images/ss16/550/TOAST_TrueIndigo_ContentPage_3.jpg'
+                    /></li>
+                <li><img src='https://s-media-cache-ak0.pinimg.com/736x/89/80/94/8980945eb5cbc63c61502fbe78aab494.jpg' /></li>
+                <li><img src='https://d117fiyhpld8f9.cloudfront.net/content-images/ss16/550/TOAST_TrueIndigo_ContentPage_2.jpg'
+                    /></li>
+                <li><img src='https://d117fiyhpld8f9.cloudfront.net/content-images/ss16/550/TOAST_TrueIndigo_ContentPage_3.jpg'
+                    /></li>
+                <li><img src='https://d117fiyhpld8f9.cloudfront.net/content-images/ss16/750/HHLanding_2.jpg' /></li>
+                <li><img src='https://d117fiyhpld8f9.cloudfront.net/content-images/ss16/750/HHLanding_6.jpg' /></li>
+                <li><img src='https://d117fiyhpld8f9.cloudfront.net/content-images/ss16/750/HiddenToast_LandingWomen_5.jpg' /></li>
+                <li><img src='https://d117fiyhpld8f9.cloudfront.net/content-images/ss16/750/EarlyCapsuleSale_Homepage_7.jpg'
+                    /></li>
+            </ul>
+
+        </div>
+
+    </div>
+    <a href="#" id="prev">Previous</a>
+    <a href="#" id="next">Next</a>
+<script src="mobileCarousel.js"></script>
+</body>
